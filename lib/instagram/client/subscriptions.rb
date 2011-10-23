@@ -1,4 +1,5 @@
 require 'openssl'
+require 'json'
 
 module Instagram
   class Client
@@ -135,7 +136,7 @@ module Instagram
           end
         end
 
-        payload = MultiJson.decode(json)
+        payload = JSON.parse(json)
         @changes = Hash.new { |h,k| h[k] = [] }
         for change in payload
           @changes[change['object']] << change
